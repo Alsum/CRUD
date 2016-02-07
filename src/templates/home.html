@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+
+<style>
+{% block style %}
+.navbar-static-top {
+	margin-bottom: 0px !important;
+}
+
+.jumbotron {
+	background-color:#0E3D14;
+	color: #FFF;
+}
+
+{% endblock %}
+</style>
+
+
+     
+{% block jumbotron %}
+ {% if not request.user.is_authenticated %}
+
+<div class="jumbotron">
+ <div class="container">
+	<div class="row">
+		<div class='col-sm-6'>
+		<h1>CRUD Sysyem</h1>
+		<p> You should logged as staff in order to edit or delete users....</p>
+		</div>
+		</div>
+	</div>
+ </div>
+ {% endif %}
+{% endblock %}
+
+
+
+
+{% block content %}
+ {% if request.user.is_authenticated %}
+<h1>You are logged in!</h1>
+
+	{% if queryset %}
+	<h2>Welcome Staff</h2>
+	<table class='table'>
+	{% for instance in queryset %}
+		<tr><td>{{ forloop.counter }}</td>
+		<td>{{ instance.user.username }}</td>
+		<td>{{ instance.timestamp|timesince }} ago</td>
+		<td><a href="{{instance.id}}/edit/">Edit</a></td>
+        <td><a href="{{instance.id}}/del/">Del</a></td>
+		</tr>
+	{% endfor %}
+	</table>
+
+	{% endif %}
+
+{% endif %}
+
+{% endblock %}

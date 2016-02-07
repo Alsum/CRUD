@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+        <h1>Edit user</h1>
+{% if form.errors %}
+<p style="color: red;">
+Please correct the error{{ form.errors|pluralize }} below.
+</p>
+{% endif %}
+<p>    
+<a href="{{form.id}}editcore">Click here to edit core user data</a> 
+</p>
+
+<form action="." method="post"  enctype="multipart/form-data" >
+  {% csrf_token %}
+  <table class='table'> 
+  	<tr>
+		<td>
+		<b>PIC</b>
+		</td>
+		<td>
+		{{form.pic}}	
+		</td>
+  	</tr>
+  	<tr>
+  	  	<td>
+		<b>URL</b>
+		</td>
+  		<td>
+  		{{form.url}}	
+  		</td>
+  	</tr>
+  	<tr>
+  	  	<td>
+		<b>Mob</b>
+		</td>
+  		<td>
+  		{{form.mobile}}	
+  		</td>
+  	</tr>
+  </table>
+  <input class='btn btn-block btn-primary' type="submit" value="Update" />
+</form>
+</div>
+</div>
+{% endblock %}
