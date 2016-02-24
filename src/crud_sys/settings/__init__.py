@@ -1,8 +1,4 @@
-from .base import *
-
-
 try:
-	from .local import *
+    from .local import *
 except:
-	pass
-
+    pass

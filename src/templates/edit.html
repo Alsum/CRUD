@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block content %}
 <div class='row'>
 <div class='col-sm-6 col-sm-offset-3'>
@@ -12,7 +12,6 @@ Please correct the error{{ form.errors|pluralize }} below.
 <p>    
 <a href="{{form.id}}editcore">Click here to edit core user data</a> 
 </p>
-
 <form action="." method="post"  enctype="multipart/form-data" >
   {% csrf_token %}
   <table class='table'> 
@@ -21,7 +20,8 @@ Please correct the error{{ form.errors|pluralize }} below.
 		<b>PIC</b>
 		</td>
 		<td>
-		{{form.pic}}	
+		{{form.pic}}
+
 		</td>
   	</tr>
   	<tr>
